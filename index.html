@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +15,7 @@
   </script>
 
   <style>
-  <!-- Google tag (gtag.js) -->
+  
     input, select {
       width: 100%;
       padding: 12px;
@@ -43,7 +41,7 @@
     }
       
     
-  <!-- Google tag (gtag.js) -->
+  
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -112,37 +110,64 @@
 </head>
 <script>
 
-function showProject() {
+async function showProject() {
 
     let name =
-        document.getElementById("name").value;
+        document.getElementById("name").value.trim();
 
     let mobile =
-        document.getElementById("mobile").value;
+        document.getElementById("mobile").value.trim();
+
+    let budget =
+        document.getElementById("budget").value;
 
     if(name === "" || mobile === "") {
 
         alert("Please enter Name and Mobile Number");
-
         return;
     }
 
     if(mobile.length < 10) {
 
-        alert("Please enter valid mobile number");
-
+        alert("Please enter a valid Mobile Number");
         return;
     }
 
-    console.log("Lead Captured:", name, mobile);
+    const leadData = {
+        name: name,
+        mobile: mobile,
+        budget: budget
+    };
 
-    document.getElementById("leadForm")
-            .style.display = "none";
+    try {
 
-    document.getElementById("projectContent")
-            .style.display = "block";
+        await fetch(
+          "https://script.google.com/macros/s/AKfycbzeJUCZVh1RWNm58WUOqYhB3UeQWYtF4RCa5HU1xXuU3aqiOowf3LAHq9BNA8Dlgjgp/exec",
+          {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(leadData)
+          }
+        );
 
-    window.scrollTo(0,0);
+        document.getElementById("leadForm")
+                .style.display = "none";
+
+        document.getElementById("projectContent")
+                .style.display = "block";
+
+        window.scrollTo(0,0);
+
+    }
+    catch(error) {
+
+        console.error(error);
+
+        alert("Unable to submit details. Please try again.");
+    }
 }
 
 </script>
