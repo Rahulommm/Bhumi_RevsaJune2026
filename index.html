@@ -17,6 +17,33 @@
   </script>
 
   <style>
+  <!-- Google tag (gtag.js) -->
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      background: #27ae60;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #219150;
+    }
+      
+    
+  <!-- Google tag (gtag.js) -->
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -83,39 +110,143 @@
     }
   </style>
 </head>
+<script>
 
+function showProject() {
+
+    let name =
+        document.getElementById("name").value;
+
+    let mobile =
+        document.getElementById("mobile").value;
+
+    if(name === "" || mobile === "") {
+
+        alert("Please enter Name and Mobile Number");
+
+        return;
+    }
+
+    if(mobile.length < 10) {
+
+        alert("Please enter valid mobile number");
+
+        return;
+    }
+
+    console.log("Lead Captured:", name, mobile);
+
+    document.getElementById("leadForm")
+            .style.display = "none";
+
+    document.getElementById("projectContent")
+            .style.display = "block";
+
+    window.scrollTo(0,0);
+}
+
+</script>
 <body>
   <header>
     <h1>📍 NA Sanctioned Plots – Shegaon Road, Amravati</h1>
   </header>
   <main>
-    <div class="container">
-      <h2>Why Invest Here?</h2>
+  <!-- Lead Form -->
+
+    <div class="container" id="leadForm">
+
+      <h2>🏡 Get Layout & Site Visit Details</h2>
+
+      <p>
+        Fill in your details to view:
+      </p>
+
       <ul>
-        <li>📐 १०००–१५०० चौरस फुट NA भूखंड</li>
-        <li>🗓️ नोंदणीसाठी सज्ज | बँक कर्ज उपलब्ध</li>
-        <li>🛣️ शेगाव हायवेपासून फक्त २०० मीटर अंतरावर</li>
-        <li>🧭 गुगल मॅप पिन व लेआउट संलग्न</li>
-        <li>💼 गुंतवणूक किंवा घर बांधणीसाठी उत्तम पर्याय</li>
+        <li>📍 Exact Location</li>
+        <li>🗺️ Layout Plan</li>
+        <li>🏦 Loan Information</li>
+        <li>💰 Price Details</li>
+        <li>🚗 Site Visit Assistance</li>
       </ul>
 
-      <div class="buttons">
-        <a href="https://wa.me/918055622333?text=I%20am%20interested%20in%20Shegaon%20Road%20plot." target="_blank">💬 WhatsApp Now</a>
-        <a href="tel:+918055622333" class="call">📞 Call: 80556 22333</a>
-      </div>
+      <input type="text"
+             id="name"
+             placeholder="Enter Your Name">
 
-      <div class="image">
-        <p><strong>📌 Google Map Location</strong></p>
-        <img src="GooglMap.png" alt="Google Map Location">
+      <input type="tel"
+             id="mobile"
+             placeholder="Enter Mobile Number">
 
-        <p><strong>🗺️ Layout Plan</strong></p>
-        <img src="Layout.jpeg" alt="Layout Map">
-      </div>
+      <select id="budget">
+        <option value="">Select Budget Range</option>
+        <option>5–10 Lakh</option>
+        <option>10–20 Lakh</option>
+        <option>20–30 Lakh</option>
+        <option>30+ Lakh</option>
+      </select>
 
-      <div class="disclaimer">
-        <p>📢 <strong>Disclaimer:</strong> This is a promotional page by Bhumi Holdings. Prices, offers, and availability are subject to change. Site visit recommended before booking.</p>
-      </div>
+      <button onclick="showProject()">
+        📥 View Project Details
+      </button>
+
     </div>
+
+  <!-- Hidden Project Content -->
+
+    <div class="container"
+         id="projectContent"
+         style="display:none;">
+
+        <h2>Why Invest Here?</h2>
+
+        <ul>
+          <li>📐 १०००–१५०० चौरस फुट NA भूखंड</li>
+          <li>🗓️ नोंदणीसाठी सज्ज | बँक कर्ज उपलब्ध</li>
+          <li>🛣️ शेगाव हायवेपासून फक्त २०० मीटर अंतरावर</li>
+          <li>🧭 गुगल मॅप पिन व लेआउट संलग्न</li>
+          <li>💼 गुंतवणूक किंवा घर बांधणीसाठी उत्तम पर्याय</li>
+        </ul>
+
+        <div class="buttons">
+          <a href="https://wa.me/918055622333?text=I%20am%20interested%20in%20Shegaon%20Road%20plot."
+             target="_blank">
+             💬 WhatsApp Now
+          </a>
+
+          <a href="tel:+918055622333"
+             class="call">
+             📞 Call: 80556 22333
+          </a>
+        </div>
+
+        <div class="image">
+
+          <p><strong>📌 Google Map Location</strong></p>
+
+          <img src="GooglMap.png"
+               alt="Google Map Location">
+
+          <p><strong>🗺️ Layout Plan</strong></p>
+
+          <img src="Layout.jpeg"
+               alt="Layout Map">
+
+        </div>
+
+        <div class="disclaimer">
+
+          <p>
+            📢 <strong>Disclaimer:</strong>
+            This is a promotional page by Bhumi Holdings.
+            Prices, offers and availability may change.
+            Site visit recommended before booking.
+          </p>
+
+        </div>
+
+    </div>
+
   </main>
+  
 </body>
 </html>
