@@ -122,18 +122,11 @@ async function showProject() {
         document.getElementById("budget").value;
 
     if(name === "" || mobile === "") {
-
         alert("Please enter Name and Mobile Number");
         return;
     }
 
-    if(mobile.length < 10) {
-
-        alert("Please enter a valid Mobile Number");
-        return;
-    }
-
-    const leadData = {
+    const data = {
         name: name,
         mobile: mobile,
         budget: budget
@@ -141,33 +134,27 @@ async function showProject() {
 
     try {
 
-        await fetch(
-          "https://script.google.com/macros/s/AKfycbxYPkgtvk2IEplqDVqfA0HkV_dnaKvPlIqT4leoIb6osag0InbUfZ9izUpnJD4b6oyF/exec",
-          {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(leadData)
-          }
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbzeJUCZVh1RWNm58WUOqYhB3UeQWYtF4RCa5HU1xXuU3aqiOowf3LAHq9BNA8Dlgjgp/exec",
+            {
+                method: "POST",
+                redirect: "follow",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(data)
+            }
         );
 
-        document.getElementById("leadForm")
-                .style.display = "none";
+        console.log("Lead submitted");
 
-        document.getElementById("projectContent")
-                .style.display = "block";
+    } catch(error) {
 
-        window.scrollTo(0,0);
-
+        console.log(error);
     }
-    catch(error) {
 
-        console.error(error);
-
-        alert("Unable to submit details. Please try again.");
-    }
+    document.getElementById("leadForm").style.display = "none";
+    document.getElementById("projectContent").style.display = "block";
 }
 
 </script>
